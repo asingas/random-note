@@ -16,8 +16,11 @@ const Input = ({setFrequency}) => {
 }
 
 function App() {
-
-  const notes = ['E', 'E#', 'F', 'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B', 'C', 'Cb', 'C#', 'D', 'Db', 'D#','Eb'];
+  const notes = [
+    'E', 'E#', 'F', 'F#', 'Gb', 'G', 
+    'G#', 'Ab', 'A', 'A#', 'Bb', 'B', 
+    'C', 'Cb', 'C#', 'D', 'Db', 'D#','Eb'
+  ];
   const strings = ['High E', 'A', 'D', 'G', 'B', 'E'];
 
   const [frequency, setFrequency] = useState(5000);
