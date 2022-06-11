@@ -42,8 +42,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Input setFrequency={setFrequency} />
-        <p>{note}</p> 
-        <p>{string}</p>
+        <p>{note} on {string} string</p>
       </header>
     </div>
   );
