@@ -21,7 +21,7 @@ function App() {
     'G#', 'Ab', 'A', 'A#', 'Bb', 'B', 
     'C', 'Cb', 'C#', 'D', 'Db', 'D#','Eb'
   ];
-  const strings = ['High E', 'A', 'D', 'G', 'B', 'E'];
+  const strings = ['Low E', 'A', 'D', 'G', 'B', 'High E'];
 
   const [frequency, setFrequency] = useState(5000);
 
