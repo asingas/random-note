@@ -2,17 +2,26 @@ import './App.css';
 import React from 'react';
 import {useState, useEffect} from 'react';
 
+
+const Progress = ({frequency}) => {
+  // TODO: implement progress bar that shows user how much time
+  // is left until the note/string combination will change 
+}
+
 const getRandomInt = (arr, max) => {
   return arr[Math.floor(Math.random() * max)];
 }
 
 const Input = ({setFrequency}) => {
+
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       setFrequency(event.target.value * 1000);
     }
   }
-  return <input type="number" onKeyDown={handleKeyDown} />
+  return (
+    <input type="number" onKeyDown={handleKeyDown} />
+  )
 }
 
 function App() {
@@ -41,7 +50,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Input setFrequency={setFrequency} />
+        <p>Current frequency: {frequency / 1000} seconds</p> 
+        <Input setFrequency={setFrequency}  />
         <p>{note} on {string} string</p>
       </header>
     </div>
