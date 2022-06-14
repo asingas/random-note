@@ -21,7 +21,7 @@ function App() {
     'G#', 'Ab', 'A', 'A#', 'Bb', 'B', 
     'C', 'Cb', 'C#', 'D', 'Db', 'D#','Eb'
   ];
-  const strings = ['High E', 'A', 'D', 'G', 'B', 'E'];
+  const strings = ['Low E', 'A', 'D', 'G', 'B', 'High E'];
 
   const [frequency, setFrequency] = useState(5000);
 
@@ -42,8 +42,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Input setFrequency={setFrequency} />
-        <p>{note}</p> 
-        <p>{string}</p>
+        <p>{note} on {string} string</p>
       </header>
     </div>
   );
