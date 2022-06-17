@@ -2,10 +2,24 @@ import './App.css';
 import React from 'react';
 import {useState, useEffect} from 'react';
 
+const Progress = (props) => {
 
-const Progress = ({frequency}) => {
-  // TODO: implement progress bar that shows user how much time
-  // is left until the note/string combination will change 
+  const completed = 50;
+
+  const progressFillStyles = {
+    height: '100%',
+    width: `${completed}%`,
+    backgroundColor: "#00695c",
+    borderRadius: 'inherit',
+    textAlign: 'right'
+  }
+  return (
+    <div className="progress-container">
+      <div style={progressFillStyles}>
+        <span className='progress-label'>{`${completed}%`}</span>
+      </div>
+    </div>
+  )
 }
 
 const getRandomInt = (arr, max) => {
@@ -53,6 +67,7 @@ function App() {
         <p>Current frequency: {frequency / 1000} seconds</p> 
         <Input setFrequency={setFrequency}  />
         <p>{note} on {string} string</p>
+        <Progress />
       </header>
     </div>
   );
