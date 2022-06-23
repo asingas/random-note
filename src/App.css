@@ -22,8 +22,8 @@
   height: 20px;
   width: 50%;
   background-color: "#e0e0de";
-  border-radius: 50;
-  margin: 50;
+  border-radius: 25px;
+  margin: 50px;
 }
 
 .progress-label {

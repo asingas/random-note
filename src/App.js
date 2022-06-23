@@ -2,9 +2,11 @@ import './App.css';
 import React from 'react';
 import {useState, useEffect} from 'react';
 
+
 const Progress = (props) => {
 
-  const completed = 50;
+  const [completed, setCompleted] = useState(100);
+  const refreshRate = 100
 
   const progressFillStyles = {
     height: '100%',
@@ -13,6 +15,18 @@ const Progress = (props) => {
     borderRadius: 'inherit',
     textAlign: 'right'
   }
+
+  useEffect(() => {
+    const start = Date.now();
+    const interval = setInterval(() => {
+      setCompleted(((Date.now() - start) / props.frequency) * 100);
+    }, refreshRate)
+    return () => {
+      clearInterval(interval);
+    }
+
+  }, [props.frequency])
+
   return (
     <div className="progress-container">
       <div style={progressFillStyles}>
@@ -47,7 +61,6 @@ function App() {
   const strings = ['Low E', 'A', 'D', 'G', 'B', 'High E'];
 
   const [frequency, setFrequency] = useState(5000);
-
   const [note, setNote] = useState('');
   const [string, setString] = useState('');
 
@@ -67,7 +80,7 @@ function App() {
         <p>Current frequency: {frequency / 1000} seconds</p> 
         <Input setFrequency={setFrequency}  />
         <p>{note} on {string} string</p>
-        <Progress />
+        <Progress frequency={frequency}/>
       </header>
     </div>
   );
