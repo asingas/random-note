@@ -1,12 +1,12 @@
 import './App.css';
 import React from 'react';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 
 
 const Progress = (props) => {
 
-  const [completed, setCompleted] = useState(100);
-  const refreshRate = 100
+  const [completed, setCompleted] = useState(0);
+  const refreshRate = 10;
 
   const progressFillStyles = {
     height: '100%',
@@ -16,19 +16,28 @@ const Progress = (props) => {
     textAlign: 'right'
   }
 
+  const getPercentComplete = (start) => {
+    const value = Math.floor(((Date.now() - start) / props.frequency) * 100);
+    if (value === 100) {
+      return 0;
+    } else {
+      return value;
+    }
+  }
+
   useEffect(() => {
     const start = Date.now();
     const interval = setInterval(() => {
-      setCompleted(((Date.now() - start) / props.frequency) * 100);
+      setCompleted(getPercentComplete(start));
     }, refreshRate)
     return () => {
       clearInterval(interval);
     }
-
   }, [props.frequency])
 
   return (
     <div className="progress-container">
+      <p>{completed}</p>
       <div style={progressFillStyles}>
         <span className='progress-label'>{`${completed}%`}</span>
       </div>
@@ -61,8 +70,8 @@ function App() {
   const strings = ['Low E', 'A', 'D', 'G', 'B', 'High E'];
 
   const [frequency, setFrequency] = useState(5000);
-  const [note, setNote] = useState('');
-  const [string, setString] = useState('');
+  const [note, setNote] = useState(notes[0]);
+  const [string, setString] = useState(strings[0]);
 
   useEffect(() => {
     const interval = setInterval(() => {
