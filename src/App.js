@@ -1,7 +1,11 @@
 import './App.css';
 import React from 'react';
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect} from 'react';
 
+/* Helper Functions */
+const getRandomInt = (arr, max) => {
+  return arr[Math.floor(Math.random() * max)];
+}
 
 const Progress = (props) => {
 
@@ -45,10 +49,6 @@ const Progress = (props) => {
   )
 }
 
-const getRandomInt = (arr, max) => {
-  return arr[Math.floor(Math.random() * max)];
-}
-
 const Input = ({setFrequency}) => {
 
   const handleKeyDown = (event) => {
@@ -87,9 +87,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>Current frequency: {frequency / 1000} seconds</p> 
-        <Input setFrequency={setFrequency}  />
+        <Input setFrequency={setFrequency} />
         <p>{note} on {string} string</p>
-        <Progress frequency={frequency}/>
+        {/* <Progress frequency={frequency} /> */}
       </header>
     </div>
   );
