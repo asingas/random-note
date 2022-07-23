@@ -7,12 +7,12 @@ const getRandomInt = (arr, max) => {
     return arr[Math.floor(Math.random() * max)];
 }
 
-const Progress = ({ frequency, completed, setCompleted, start, setStart }) => {
+const Progress = ({ frequency, percentCompleted, setPercentCompleted, start, setStart }) => {
     const refreshRate = 10;
 
     const progressFillStyles = {
         height: '100%',
-        width: `${completed}%`,
+        width: `${percentCompleted}%`,
         backgroundColor: "#00695c",
         borderRadius: 'inherit',
         behavior: 'smooth'
@@ -32,7 +32,7 @@ const Progress = ({ frequency, completed, setCompleted, start, setStart }) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCompleted(getPercentComplete());
+            setPercentCompleted(getPercentComplete());
         }, refreshRate)
         return () => {
             clearInterval(interval);
@@ -41,20 +41,20 @@ const Progress = ({ frequency, completed, setCompleted, start, setStart }) => {
 
     return (
         <div className="progress-container">
-            <p>{completed}</p>
+            <p>{percentCompleted}</p>
             <div style={progressFillStyles}>
-                <span className='progress-label'>{`${completed}%`}</span>
+                <span className='progress-label'>{`${percentCompleted}%`}</span>
             </div>
         </div>
     )
 }
 
-const Input = ({ setFrequency, setCompleted, setStart }) => {
+const Input = ({ setFrequency, setPercentCompleted, setStart }) => {
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             setFrequency(event.target.value * 1000);
-            setCompleted(0);
+            setPercentCompleted(0);
             setStart(Date.now());
         }
     }
@@ -91,7 +91,7 @@ const NotesAndStrings = ({ frequency }) => {
 }
 
 const NoteRecognitionPractice = () => {
-    const [completed, setCompleted] = useState(0);
+    const [percentCompleted, setPercentCompleted] = useState(0);
     const [frequency, setFrequency] = useState(5000);
     const [start, setStart] = useState(Date.now());
 
@@ -100,7 +100,7 @@ const NoteRecognitionPractice = () => {
             <p>Current frequency: <strong>{frequency / 1000}</strong> seconds</p>
             <Input 
                 setFrequency={setFrequency}
-                setCompleted={setCompleted}
+                setPercentCompleted={setPercentCompleted}
                 setStart={setStart}
             />
             <NotesAndStrings 
@@ -108,8 +108,8 @@ const NoteRecognitionPractice = () => {
             />
             <Progress 
                 frequency={frequency}
-                completed={completed}
-                setCompleted={setCompleted}
+                percentCompleted={percentCompleted}
+                setPercentCompleted={setPercentCompleted}
                 start={start}
                 setStart={setStart}
             />
@@ -118,7 +118,6 @@ const NoteRecognitionPractice = () => {
 }
 
 function App() {
-
     return (
         <div className="App">
             <header className="App-header">
